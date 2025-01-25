@@ -1,0 +1,78 @@
+# --- Go ---
+# Binaries for programs and plugins
+*.exe
+*.dll
+*.so
+*.dylib
+*.a
+*.out
+
+# Test binary
+*.test
+
+# Go workspace file
+go.work
+go.work.sum
+
+# Dependency directories (remove the comment if using vendoring)
+vendor/
+
+# Go module files
+go.sum
+go.mod
+
+# IDE and editor specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- C# ---
+# Build Folders
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.sln.cache
+*.sln.docstates
+
+# Visual Studio specific
+.vs/
+*.csproj.user
+*.csproj.vspscc
+*.csproj.vssscc
+*.sln.vssscc
+
+# Rider/JetBrains specific
+.idea/
+*.sln.iml
+
+# Packages
+*.nupkg
+*.snupkg
+packages/
+project.lock.json
+
+# Logs and generated files
+*.log
+*.tlog
+*.cache
+*.pid
+*.pdb
+*.mdb
+
+# Temporary files
+*.tmp
+*.bak
+*.old
+
+# NuGet Packages
+*.nupkg
+*.snupkg
+.nuget/
+
+# MacOS/Linux OS files
+.DS_Store
+Thumbs.db
