@@ -4,7 +4,9 @@ import (
 	"bufio"
 	"fmt"
 	"net"
+	"os"
 )
+
 /*var listener, err = net.Listen("tcp", ":"+port) es lo mismo que listener, err := net.Listen("tcp", ":"+port)
 message, _ := reader.ReadString('\n') el guion bajo se utiliza para omitir alguna variable,
 por ejemplo en ese caso reader.ReadString('\n')te regresa un string y un error y estoy omitiendo el error
@@ -49,17 +51,28 @@ func ConnectToPeer(address string, user string) {
 func recieveMessage(conn net.Conn) {
 	defer conn.Close()
 	reader := bufio.NewReader(conn)
-	message, _ := reader.ReadString('\n')
-	fmt.Println(message)
+	for {
+		message, err := reader.ReadString('\n')
+		if err != nil {
+			fmt.Println("Error receiving message:", err.Error())
+			return
+		}
+		fmt.Print(message)
+	}
 }
 
 func sendMessage(conn net.Conn) {
 	writer := bufio.NewWriter(conn)
+	scanner := bufio.NewScanner(os.Stdin)
 	fmt.Println("Connected to peer. Type your message:")
-	message := "this is the firt message :)"
-	_, err := writer.WriteString(message)
-	if err != nil {
-		fmt.Println("Error sending message:", err.Error())
+	for scanner.Scan() {
+		message := scanner.Text()
+		UserMessage := username + ": " + message + "\n"
+		_, err := writer.WriteString(UserMessage)
+		if err != nil {
+			fmt.Println("Error sending message:", err.Error())
+			return
+		}
+		writer.Flush()
 	}
-	writer.Flush()
 }
