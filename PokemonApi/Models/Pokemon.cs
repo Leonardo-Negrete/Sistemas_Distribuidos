@@ -2,9 +2,9 @@ using PokemonApi.Dtos;
 
 namespace PokemonApi.Models;
 
-public class Pokemon
+public class Pokemon //Todo para la logica interna, en el servicio
 {
-    public Guid id {get; set;}
+    public Guid Id {get; set;}
     public string Name {get; set;}
     public string Type {get; set;}
     public int Level {get; set;}
