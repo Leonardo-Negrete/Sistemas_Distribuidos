@@ -1,6 +1,6 @@
 namespace PokemonApi.Infrastructure.Entities;
 
-public class PokemonEntity
+public class PokemonEntity //Todo lo que tiene que ver con la base de datos
 {
     public Guid Id {get; set;}
     public string Name {get; set;}
