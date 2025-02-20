@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using PokemonApi.Infrastructure.Entities;
+using ZstdSharp.Unsafe;
 
 
 namespace PokemonApi.Infrastructure;
@@ -25,5 +26,7 @@ public class RelationalDbContext : DbContext
             entity.Property(s => s.Speed).IsRequired();
             entity.Property(s => s.Weight).IsRequired();
         });
+
+
     }
 }
