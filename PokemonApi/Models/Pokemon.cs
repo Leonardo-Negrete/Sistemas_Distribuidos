@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using PokemonApi.Dtos;
 
 namespace PokemonApi.Models;
@@ -10,3 +11,4 @@ public class Pokemon //Todo para la logica interna, en el servicio
     public int Level {get; set;}
     public Stats Stats {get; set;}
 }
+
