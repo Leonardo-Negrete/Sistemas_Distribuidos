@@ -17,7 +17,7 @@ public class PokemonRepository : IPokemonRepository{
     }
 
     public async Task DeleteAsync(Pokemon pokemon, CancellationToken cancellationToken){
-        _context.Pokemons.Remove(pokemon.ToEntity()); // No todos los metodos piden usar el awit como aqui el metodo remove.
+        _context.Pokemons.Remove(pokemon.ToEntity()); // No todos los metodos piden usar el await como aqui el metodo remove.
         await _context.SaveChangesAsync(cancellationToken); //Y como buena practica por lo general todos los metodos que vienen con async
     }// como AddAsync ocupan el await
 
