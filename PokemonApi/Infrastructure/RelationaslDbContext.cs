@@ -1,3 +1,4 @@
+using HobbieApi.Infrastructure.Entities;
 using Microsoft.EntityFrameworkCore;
 using PokemonApi.Infrastructure.Entities;
 using ZstdSharp.Unsafe;
@@ -8,6 +9,7 @@ namespace PokemonApi.Infrastructure;
 public class RelationalDbContext : DbContext
 {
     public DbSet<PokemonEntity> Pokemons {get; set;}
+    public DbSet<HobbieEntity> Hobbies {get; set;}
     public RelationalDbContext(DbContextOptions<RelationalDbContext> options) : base(options){
 
     }
@@ -27,6 +29,10 @@ public class RelationalDbContext : DbContext
             entity.Property(s => s.Weight).IsRequired();
         });
 
-
+        modelBuilder.Entity<HobbieEntity>(entity => {
+           entity.HasKey(s => s.Id);
+           entity.Property(s => s.Name).IsRequired().HasMaxLength(100);
+           entity.Property(s => s.Top).IsRequired();
+        });
     }
 }
