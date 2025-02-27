@@ -1,3 +1,5 @@
+using BookApi.Repositories;
+using BookApi.Services;
 using HobbieApi.Repositories;
 using HobbieApi.Services;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +18,10 @@ builder.Services.AddScoped<IPokemonRepository, PokemonRepository>();
 builder.Services.AddSingleton<IHobbieService, HobbieService>();
 builder.Services.AddScoped<IHobbieRepository, HobbieRepository>();
 
+//Book
+builder.Services.AddSingleton<IBookService, BookService>();
+builder.Services.AddScoped<IBookRepository, BookRepository>();
+
 builder.Services.AddDbContext<RelationalDbContext>(options => options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"), 
 ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))));
 
@@ -23,5 +29,6 @@ var app = builder.Build();
 
 app.UseSoapEndpoint<IPokemonService>("/PokemonService.svc", new SoapEncoderOptions());
 app.UseSoapEndpoint<IHobbieService>("/LeonardoNegreteHobbiesService.svc", new SoapEncoderOptions());
+app.UseSoapEndpoint<IBookService>("/BookService.svc", new SoapEncoderOptions());
 
 app.Run();
