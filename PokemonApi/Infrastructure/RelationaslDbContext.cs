@@ -1,3 +1,4 @@
+using BookApi.Infrastructure.Entities;
 using HobbieApi.Infrastructure.Entities;
 using Microsoft.EntityFrameworkCore;
 using PokemonApi.Infrastructure.Entities;
@@ -10,6 +11,7 @@ public class RelationalDbContext : DbContext
 {
     public DbSet<PokemonEntity> Pokemons {get; set;}
     public DbSet<HobbieEntity> Hobbies {get; set;}
+    public DbSet<BookEntity> Books {get; set;}
     public RelationalDbContext(DbContextOptions<RelationalDbContext> options) : base(options){
 
     }
@@ -33,6 +35,13 @@ public class RelationalDbContext : DbContext
            entity.HasKey(s => s.Id);
            entity.Property(s => s.Name).IsRequired().HasMaxLength(100);
            entity.Property(s => s.Top).IsRequired();
+        });
+
+        modelBuilder.Entity<BookEntity>(entity => {
+           entity.HasKey(s => s.Id);
+           entity.Property(s => s.Title).IsRequired().HasMaxLength(100);
+           entity.Property(s => s.Author).IsRequired().HasMaxLength(100);
+           entity.Property(s => s.PublishedDate).IsRequired().HasColumnType("datetime");
         });
     }
 }
