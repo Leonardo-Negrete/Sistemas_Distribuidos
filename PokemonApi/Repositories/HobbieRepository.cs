@@ -30,4 +30,14 @@ public class HobbieRepository : IHobbieRepository{
         //Si 'hobbyEntities' es null o está vacío, devolvemos una lista vacía.
         return hobbyEntities?.Select(hobbyEntity => hobbyEntity.ToModel()).ToList() ?? new List<Hobbie>();
     }
+
+    public async Task AddAsync(Hobbie hobbie, CancellationToken cancellationToken){
+        await _context.Hobbies.AddAsync(hobbie.ToEntity(), cancellationToken);
+        await _context.SaveChangesAsync(cancellationToken);
+    }
+
+    public async Task UpdateAsync(Hobbie hobbie, CancellationToken cancellationToken){
+        _context.Hobbies.Update(hobbie.ToEntity());
+        await _context.SaveChangesAsync(cancellationToken);
+    }
 }

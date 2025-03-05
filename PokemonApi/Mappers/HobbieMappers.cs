@@ -31,4 +31,13 @@ public static class HobbieMapper {
             Top = hobbie.Top
         };
     }
+
+    public static Hobbie ToModel(this CreateHobbieDto hobbie)
+    {
+        return new Hobbie{
+            Id=Guid.NewGuid(),
+            Name = hobbie.Name,
+            Top = hobbie.Top
+        };
+    }
 }
