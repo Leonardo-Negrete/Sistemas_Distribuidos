@@ -20,4 +20,6 @@ Define que este método estará disponible para llamadas remotas.*/
     Task<bool> DeletePokemon(Guid id, CancellationToken cancellationToken);
     [OperationContract]
     Task<PokemonResponseDto> CreatePokemon(CreatePokemonDto createPokemon, CancellationToken cancellationToken);
+    [OperationContract]
+    Task<PokemonResponseDto> UpdatePokemon(UpdatePokemonDto pokemon, CancellationToken cancellationToken);
 }
