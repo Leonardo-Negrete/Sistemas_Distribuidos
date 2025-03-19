@@ -33,4 +33,13 @@ public static class PokemonMapper
             Speed = pokemon.Stats.Speed
         };
     }
+
+    public static List<Pokemon> ToModelList(this List<PokemonResponseDto> pokemon)
+    {
+        return pokemon?.Select(e => e.ToModel()).ToList() ?? new List<Pokemon>();
+    }
+    public static List<PokemonResponse> ToDtoList(this List<Pokemon> pokemon)
+    {
+        return pokemon?.Select(b => b.ToDto()).ToList() ?? new List<PokemonResponse>();
+    }
 }
