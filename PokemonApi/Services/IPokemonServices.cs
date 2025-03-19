@@ -17,6 +17,8 @@ Define que este método estará disponible para llamadas remotas.*/
     // Guid id Es el parámetro de entrada que representa el ID único del Pokémon.
     // CancellationToken cancellationToken: Permite cancelar la operación asincrónica si es necesario, por ejemplo, si el cliente cierra la conexión o el tiempo de espera expira.
     [OperationContract]
+    Task<List<PokemonResponseDto>> GetPokemonByName(string name, CancellationToken cancellationToken);
+    [OperationContract]
     Task<bool> DeletePokemon(Guid id, CancellationToken cancellationToken);
     [OperationContract]
     Task<PokemonResponseDto> CreatePokemon(CreatePokemonDto createPokemon, CancellationToken cancellationToken);

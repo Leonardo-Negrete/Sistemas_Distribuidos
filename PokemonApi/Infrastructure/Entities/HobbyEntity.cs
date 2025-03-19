@@ -1,6 +1,5 @@
-namespace HobbieApi.Dtos;
-
-public class HobbieResponseDto
+namespace HobbyApi.Infrastructure.Entities;
+public class HobbyEntity
 {
     public Guid Id {get; set;}
     public string Name {get; set;}

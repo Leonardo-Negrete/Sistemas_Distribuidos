@@ -1,5 +1,5 @@
 using BookApi.Infrastructure.Entities;
-using HobbieApi.Infrastructure.Entities;
+using HobbyApi.Infrastructure.Entities;
 using Microsoft.EntityFrameworkCore;
 using PokemonApi.Infrastructure.Entities;
 
@@ -9,7 +9,7 @@ namespace PokemonApi.Infrastructure;
 public class RelationalDbContext : DbContext
 {
     public DbSet<PokemonEntity> Pokemons {get; set;}
-    public DbSet<HobbieEntity> Hobbies {get; set;}
+    public DbSet<HobbyEntity> Hobbies {get; set;}
     public DbSet<BookEntity> Books {get; set;}
     public RelationalDbContext(DbContextOptions<RelationalDbContext> options) : base(options){
         ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
@@ -30,7 +30,7 @@ public class RelationalDbContext : DbContext
             entity.Property(s => s.Weight).IsRequired();
         });
 
-        modelBuilder.Entity<HobbieEntity>(entity => {
+        modelBuilder.Entity<HobbyEntity>(entity => {
            entity.HasKey(s => s.Id);
            entity.Property(s => s.Name).IsRequired().HasMaxLength(100);
            entity.Property(s => s.Top).IsRequired();

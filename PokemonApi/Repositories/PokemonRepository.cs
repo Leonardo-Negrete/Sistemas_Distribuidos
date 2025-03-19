@@ -16,6 +16,12 @@ public class PokemonRepository : IPokemonRepository{
         return pokemon.ToModel();
     }
 
+    public async Task<List<Pokemon>> GetByNameAsync(string name, CancellationToken cancellationToken)
+    {
+        var pokemon = await _context.Pokemons.AsNoTracking().Where(h => h.Name.Contains(name)) .ToListAsync(cancellationToken);
+        return pokemon.ToModelList();
+    }
+
     public async Task DeleteAsync(Pokemon pokemon, CancellationToken cancellationToken){
         _context.Pokemons.Remove(pokemon.ToEntity()); // No todos los metodos piden usar el await como aqui el metodo remove.
         await _context.SaveChangesAsync(cancellationToken); //Y como buena practica por lo general todos los metodos que vienen con async
