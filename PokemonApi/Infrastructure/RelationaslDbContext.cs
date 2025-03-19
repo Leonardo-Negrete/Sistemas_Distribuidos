@@ -2,7 +2,6 @@ using BookApi.Infrastructure.Entities;
 using HobbieApi.Infrastructure.Entities;
 using Microsoft.EntityFrameworkCore;
 using PokemonApi.Infrastructure.Entities;
-using ZstdSharp.Unsafe;
 
 
 namespace PokemonApi.Infrastructure;
@@ -13,7 +12,7 @@ public class RelationalDbContext : DbContext
     public DbSet<HobbieEntity> Hobbies {get; set;}
     public DbSet<BookEntity> Books {get; set;}
     public RelationalDbContext(DbContextOptions<RelationalDbContext> options) : base(options){
-
+        ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
