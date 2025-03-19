@@ -25,4 +25,14 @@ public class PokemonsController : ControllerBase
         }
         return Ok(pokemon.ToDto());
     }
+
+    [HttpGet("by-name/{name}")]
+    public async Task<ActionResult<List<PokemonResponse>>> GetPokemonByName(string name, CancellationToken cancellationToken)
+    {
+        var pokemon = await _pokemonService.GetPokemonByNameAsync(name, cancellationToken);
+        if (pokemon == null){
+            return NotFound();
+        }
+        return Ok(pokemon.ToDtoList());
+    }
 }
