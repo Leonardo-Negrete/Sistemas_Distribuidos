@@ -25,6 +25,12 @@ public class PokemonService : IPokemonService
         return pokemon.ToDto();
     }
 
+    public async Task<List<PokemonResponseDto>> GetPokemonByName(string name, CancellationToken cancellationToken)
+    {
+        var pokemons = await _pokemonRepository.GetByNameAsync(name, cancellationToken);
+        return pokemons.ToDtoList();
+    }
+
     public async Task<bool> DeletePokemon(Guid id, CancellationToken cancellationToken){
         var pokemon = await _pokemonRepository.GetByIdAsync(id, cancellationToken);
         if(pokemon is null){

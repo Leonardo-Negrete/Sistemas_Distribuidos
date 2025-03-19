@@ -4,7 +4,7 @@ using BookApi.Models;
 
 namespace BookApi.Mappers;
 
-public static class HobbieMapper {
+public static class BookMapper {
     public static BookEntity ToEntity(this Book book){
         return new BookEntity{
             Id = book.Id,
