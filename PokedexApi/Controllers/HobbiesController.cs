@@ -26,8 +26,19 @@ public class HobbiesController : ControllerBase
         return Ok(hobby.ToDto());
     }
 
+    /* MALA PRACTICA
     [HttpGet("by-name/{name}")]
     public async Task<ActionResult<List<HobbyResponse>>> GetHobbyByName(string name, CancellationToken cancellationToken)
+    {
+        var hobby = await _hobbyService.GetHobbyByNameAsync(name, cancellationToken);
+        if (hobby == null){
+            return NotFound();
+        }
+        return Ok(hobby.ToDtoList());
+    }*/
+
+    [HttpGet]
+    public async Task<ActionResult<List<HobbyResponse>>> GetHobbyByName([FromQuery]string name, CancellationToken cancellationToken)
     {
         var hobby = await _hobbyService.GetHobbyByNameAsync(name, cancellationToken);
         if (hobby == null){
