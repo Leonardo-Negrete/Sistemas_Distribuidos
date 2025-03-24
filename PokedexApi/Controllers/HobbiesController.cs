@@ -41,9 +41,18 @@ public class HobbiesController : ControllerBase
     public async Task<ActionResult<List<HobbyResponse>>> GetHobbyByName([FromQuery]string name, CancellationToken cancellationToken)
     {
         var hobby = await _hobbyService.GetHobbyByNameAsync(name, cancellationToken);
-        if (hobby == null){
-            return NotFound();
-        }
         return Ok(hobby.ToDtoList());
+    }
+
+    [HttpDelete("{id}")]
+    //204 - NoContent (Se encontro y se elimino el hobby de manera correcta pero el body de respuesta esta vacio)
+    //200 - ok (se encontro y se elimino y en el body de respuesta se manda un mensaje de exito)
+    public async Task<ActionResult> DeleteHobbyById(Guid id, CancellationToken cancellationToken)
+    {
+        var deleted = await _hobbyService.DeleteHobbyByIdAsync(id, cancellationToken);
+        if (deleted){
+            return NoContent(); //204
+        }
+        return NotFound(); //404
     }
 }

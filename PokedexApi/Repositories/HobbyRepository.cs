@@ -43,4 +43,21 @@ public class HobbyRepository : IHobbyRepository
             return new List<Hobby>();
         }
     }
+
+    public async Task<bool> DeleteHobbyByIdAsync(Guid id, CancellationToken cancellationToken){
+        try
+        {
+            await _hobbyService.DeleteHobby(id, cancellationToken);
+            return true;
+        }
+        catch(FaultException ex) when (ex.Message =="Hobby not found :(")
+        {
+            return false;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Failed to delete hobby with id: {id}", id);
+            throw;
+        }
+    }
 }
