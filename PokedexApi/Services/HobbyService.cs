@@ -19,4 +19,8 @@ public class HobbyService : IHobbyService
     {
         return await _hobbyRepository.GetHobbyByNameAsync(name, cancellationToken);
     }
+    public async Task<bool> DeleteHobbyByIdAsync(Guid id, CancellationToken cancellationToken)
+    {
+        return await _hobbyRepository.DeleteHobbyByIdAsync(id, cancellationToken);
+    }
 }
