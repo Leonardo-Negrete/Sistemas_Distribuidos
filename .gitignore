@@ -76,3 +76,62 @@ project.lock.json
 # MacOS/Linux OS files
 .DS_Store
 Thumbs.db
+
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+*.py[cod]
+*$py.class
+
+# Entorno virtual
+venv/
+.env
+*.env
+.env.local
+
+# --- Docker ---
+*.log
+docker-compose.override.yml
+docker-compose.override.yaml
+*.pid
+docker/
+Dockerfile
+
+# Bases de datos locales
+*.db
+*.sqlite3
+
+# --- Node ---
+node_modules/
+package-lock.json
+yarn.lock
+
+# --- IDEs y herramientas ---
+.vscode/
+.idea/
+*.swp
+
+# --- Cobertura de pruebas ---
+.coverage
+*.cover
+.pytest_cache/
+.tox/
+.nox/
+htmlcov/
+
+# --- Archivos de compilación ---
+dist/
+build/
+
+# --- Documentación técnica ---
+docs/_build/
+
+# --- Jupyter Notebook ---
+.ipynb_checkpoints
+
+# --- Otros ---
+log/
+logs/
+debug.log
+Thumbs.db
