@@ -44,9 +44,6 @@ public class PokemonsController : ControllerBase
     public async Task<ActionResult<List<PokemonResponse>>> GetPokemonByName([FromQuery]string name, CancellationToken cancellationToken)
     {
         var pokemon = await _pokemonService.GetPokemonByNameAsync(name, cancellationToken);
-        if (pokemon == null){
-            return NotFound();
-        }
         return Ok(pokemon.ToDtoList());
     }
 
