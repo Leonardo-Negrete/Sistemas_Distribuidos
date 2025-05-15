@@ -25,7 +25,7 @@ _sym_db = _symbol_database.Default()
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rtrainer.proto\x12\ttrainerpb\x1a\x1fgoogle/protobuf/timestamp.proto\" \n\x12TrainerByIdRequest\x12\n\n\x02id\x18\x01 \x01(\t\"\xba\x01\n\x0fTrainerResponse\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0b\n\x03\x61ge\x18\x03 \x01(\x05\x12-\n\tbirthdate\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12!\n\x06medals\x18\x05 \x03(\x0b\x32\x11.trainerpb.Medals\x12.\n\ncreated_at\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"<\n\x06Medals\x12\x0e\n\x06region\x18\x01 \x01(\t\x12\"\n\x04type\x18\x02 \x01(\x0e\x32\x14.trainerpb.MedalType*9\n\tMedalType\x12\n\n\x06UNKNOW\x10\x00\x12\x08\n\x04GOLD\x10\x01\x12\n\n\x06SILVER\x10\x02\x12\n\n\x06\x42RONZE\x10\x03\x32Y\n\x0eTrainerService\x12G\n\nGetTrainer\x12\x1d.trainerpb.TrainerByIdRequest\x1a\x1a.trainerpb.TrainerResponseB\r\xaa\x02\nTrainerApib\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rtrainer.proto\x12\ttrainerpb\x1a\x1fgoogle/protobuf/timestamp.proto\"]\n\x16\x43reateTrainersResponse\x12\x15\n\rsuccess_count\x18\x01 \x01(\x05\x12,\n\x08trainers\x18\x02 \x03(\x0b\x32\x1a.trainerpb.TrainerResponse\"\x83\x01\n\x14\x43reateTrainerRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0b\n\x03\x61ge\x18\x02 \x01(\x05\x12-\n\tbirthdate\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12!\n\x06medals\x18\x04 \x03(\x0b\x32\x11.trainerpb.Medals\" \n\x12TrainerByIdRequest\x12\n\n\x02id\x18\x01 \x01(\t\"\xba\x01\n\x0fTrainerResponse\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0b\n\x03\x61ge\x18\x03 \x01(\x05\x12-\n\tbirthdate\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12!\n\x06medals\x18\x05 \x03(\x0b\x32\x11.trainerpb.Medals\x12.\n\ncreated_at\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"<\n\x06Medals\x12\x0e\n\x06region\x18\x01 \x01(\t\x12\"\n\x04type\x18\x02 \x01(\x0e\x32\x14.trainerpb.MedalType*9\n\tMedalType\x12\n\n\x06UNKNOW\x10\x00\x12\x08\n\x04GOLD\x10\x01\x12\n\n\x06SILVER\x10\x02\x12\n\n\x06\x42RONZE\x10\x03\x32\xb0\x01\n\x0eTrainerService\x12G\n\nGetTrainer\x12\x1d.trainerpb.TrainerByIdRequest\x1a\x1a.trainerpb.TrainerResponse\x12U\n\rCreateTrainer\x12\x1f.trainerpb.CreateTrainerRequest\x1a!.trainerpb.CreateTrainersResponse(\x01\x42\r\xaa\x02\nTrainerApib\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -33,14 +33,18 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'trainer_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'\252\002\nTrainerApi'
-  _globals['_MEDALTYPE']._serialized_start=346
-  _globals['_MEDALTYPE']._serialized_end=403
-  _globals['_TRAINERBYIDREQUEST']._serialized_start=61
-  _globals['_TRAINERBYIDREQUEST']._serialized_end=93
-  _globals['_TRAINERRESPONSE']._serialized_start=96
-  _globals['_TRAINERRESPONSE']._serialized_end=282
-  _globals['_MEDALS']._serialized_start=284
-  _globals['_MEDALS']._serialized_end=344
-  _globals['_TRAINERSERVICE']._serialized_start=405
-  _globals['_TRAINERSERVICE']._serialized_end=494
+  _globals['_MEDALTYPE']._serialized_start=575
+  _globals['_MEDALTYPE']._serialized_end=632
+  _globals['_CREATETRAINERSRESPONSE']._serialized_start=61
+  _globals['_CREATETRAINERSRESPONSE']._serialized_end=154
+  _globals['_CREATETRAINERREQUEST']._serialized_start=157
+  _globals['_CREATETRAINERREQUEST']._serialized_end=288
+  _globals['_TRAINERBYIDREQUEST']._serialized_start=290
+  _globals['_TRAINERBYIDREQUEST']._serialized_end=322
+  _globals['_TRAINERRESPONSE']._serialized_start=325
+  _globals['_TRAINERRESPONSE']._serialized_end=511
+  _globals['_MEDALS']._serialized_start=513
+  _globals['_MEDALS']._serialized_end=573
+  _globals['_TRAINERSERVICE']._serialized_start=635
+  _globals['_TRAINERSERVICE']._serialized_end=811
 # @@protoc_insertion_point(module_scope)

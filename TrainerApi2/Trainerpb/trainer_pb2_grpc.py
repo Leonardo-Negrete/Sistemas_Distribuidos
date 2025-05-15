@@ -3,7 +3,7 @@
 import grpc
 import warnings
 
-from Trainerpb import trainer_pb2 as trainer__pb2
+from . import trainer_pb2 as trainer__pb2
 
 GRPC_GENERATED_VERSION = '1.71.0'
 GRPC_VERSION = grpc.__version__
@@ -39,6 +39,11 @@ class TrainerServiceStub(object):
                 request_serializer=trainer__pb2.TrainerByIdRequest.SerializeToString,
                 response_deserializer=trainer__pb2.TrainerResponse.FromString,
                 _registered_method=True)
+        self.CreateTrainer = channel.stream_unary(
+                '/trainerpb.TrainerService/CreateTrainer',
+                request_serializer=trainer__pb2.CreateTrainerRequest.SerializeToString,
+                response_deserializer=trainer__pb2.CreateTrainersResponse.FromString,
+                _registered_method=True)
 
 
 class TrainerServiceServicer(object):
@@ -51,6 +56,13 @@ class TrainerServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def CreateTrainer(self, request_iterator, context):
+        """Stream significa que se mandaran multiples paquetes
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_TrainerServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -58,6 +70,11 @@ def add_TrainerServiceServicer_to_server(servicer, server):
                     servicer.GetTrainer,
                     request_deserializer=trainer__pb2.TrainerByIdRequest.FromString,
                     response_serializer=trainer__pb2.TrainerResponse.SerializeToString,
+            ),
+            'CreateTrainer': grpc.stream_unary_rpc_method_handler(
+                    servicer.CreateTrainer,
+                    request_deserializer=trainer__pb2.CreateTrainerRequest.FromString,
+                    response_serializer=trainer__pb2.CreateTrainersResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -87,6 +104,33 @@ class TrainerService(object):
             '/trainerpb.TrainerService/GetTrainer',
             trainer__pb2.TrainerByIdRequest.SerializeToString,
             trainer__pb2.TrainerResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def CreateTrainer(request_iterator,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.stream_unary(
+            request_iterator,
+            target,
+            '/trainerpb.TrainerService/CreateTrainer',
+            trainer__pb2.CreateTrainerRequest.SerializeToString,
+            trainer__pb2.CreateTrainersResponse.FromString,
             options,
             channel_credentials,
             insecure,
