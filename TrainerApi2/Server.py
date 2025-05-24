@@ -3,7 +3,7 @@ from concurrent import futures
 
 import grpc
 from Trainerpb.trainer_pb2_grpc import TrainerServiceServicer, add_TrainerServiceServicer_to_server
-from Trainerpb.trainer_pb2 import TrainerByIdRequest, CreateTrainerRequest
+from Trainerpb.trainer_pb2 import TrainerByIdRequest, CreateTrainerRequest, GetTrainersByNameRequest,TrainerResponse
 
 from Repositories.TrainerRepository import TrainerRepository
 from Mappers.TrainerMapper import toResponse, toCreateResponse
@@ -26,16 +26,34 @@ class TrainerService(TrainerServiceServicer):
     def CreateTrainer(self, request_iterator, context):
         created = []
         for req in request_iterator:  # stream de CreateTrainerRequest
+            # Validación: si ya existe un trainer con el mismo nombre (case-insensitive), saltar
+            existing = self.repo.GetTrainersByName(req.name)
+            if any(tr.name.lower() == req.name.lower() for tr in existing):
+                continue
+
             tr = self.repo.CreateTrainer(
                 name=req.name,
                 age=req.age,
                 birthdate=req.birthdate,
                 medals=list(req.medals)
             )
-            #if self.repo.GetTrainerByName(tr.id): Esto ser podra ejecutar cuando se implemente el servicio de GetTrainerByName
-            #   continue
             created.append(tr)
+
         return toCreateResponse(created)
+    
+    def GetTrainersByName(self, request: GetTrainersByNameRequest, context):
+        name = request.name.strip()
+        if len(name) < 2:
+            context.abort(
+                grpc.StatusCode.INVALID_ARGUMENT,
+                "El filtro de nombre debe tener al menos 2 letras."
+            )
+
+        trainers = self.repo.GetTrainersByName(name)
+
+        for tr_model in trainers:
+            time.sleep(5)
+            yield toResponse(tr_model)
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=4))

@@ -24,3 +24,10 @@ class TrainerRepository:
         )
         self._store[new_id] = trainer
         return trainer
+    
+    def GetTrainersByName(self, name_substr: str) -> list[Trainer]:
+        low = name_substr.lower()
+        return [
+            tr for tr in self._store.values()
+            if low in tr.name.lower()
+        ]
